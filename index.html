@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="card">
+      <div class="calc-head">
+        <input
+          maxlength="10"
+          disabled="disabled"
+          type="text"
+          id="result"
+          style="color: black"
+        />
+      </div>
+      <div class="cal-body">
+        <div>
+          <input type="button" class="btn" value="C" onclick="clearResult()" />
+          <input type="button" class="btn" value="+/-" />
+          <input
+            type="button"
+            class="btn"
+            value="%"
+            onclick="appendToResult('%')"
+          />
+          <input
+            type="button"
+            class="btn"
+            value="/"
+            onclick="appendToResult('/')"
+          />
+        </div>
+        <div>
+          <input
+            type="button"
+            class="btn"
+            value="7"
+            onclick="appendToResult('7')"
+          />
+          <input
+            type="button"
+            class="btn"
+            value="8"
+            onclick="appendToResult('8')"
+          />
+          <input
+            type="button"
+            class="btn"
+            value="9"
+            onclick="appendToResult('9')"
+          />
+          <input
+            type="button"
+            class="btn"
+            value="X"
+            onclick="appendToResult('*')"
+          />
+        </div>
+        <div>
+          <input
+            type="button"
+            class="btn"
+            value="4"
+            onclick="appendToResult('4')"
+          />
+          <input
+            type="button"
+            class="btn"
+            value="5"
+            onclick="appendToResult('5')"
+          />
+          <input
+            type="button"
+            class="btn"
+            value="6"
+            onclick="appendToResult('6')"
+          />
+          <input
+            type="button"
+            class="btn"
+            value="-"
+            onclick="appendToResult('-')"
+          />
+        </div>
+        <div>
+          <input
+            type="button"
+            class="btn"
+            value="1"
+            onclick="appendToResult('1')"
+          />
+          <input
+            type="button"
+            class="btn"
+            value="2"
+            onclick="appendToResult('2')"
+          />
+          <input
+            type="button"
+            class="btn"
+            value="3"
+            onclick="appendToResult('3')"
+          />
+          <input
+            type="button"
+            class="btn"
+            value="+"
+            onclick="appendToResult('+')"
+          />
+        </div>
+        <div>
+          <input
+            type="button"
+            class="btn"
+            value="0"
+            onclick="appendToResult('0')"
+          />
+          <input
+            type="button"
+            class="btn"
+            value="."
+            onclick="appendToResult('.')"
+          />
+          <input type="button" class="btn" value="DEL" onclick="deleteLast()" />
+          <input type="button" class="btn" value="=" onclick="calculate()" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let currentInput = "";
+
+      function clearResult() {
+        currentInput = "";
+        document.getElementById("result").value = "";
+      }
+
+      function appendToResult(value) {
+        currentInput += value;
+        document.getElementById("result").value = currentInput;
+      }
+
+      function deleteLast() {
+        currentInput = currentInput.slice(0, -1);
+        document.getElementById("result").value = currentInput;
+      }
+
+      function calculate() {
+        try {
+          const result = eval(currentInput);
+          document.getElementById("result").value = result;
+          currentInput = result.toString();
+        } catch (error) {
+          document.getElementById("result").value = "Error";
+          currentInput = "";
+        }
+      }
+    </script>
+  </body>
+</html>
